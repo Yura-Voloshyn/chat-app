@@ -1,0 +1,115 @@
+import {
+  StyledFormWrapper,
+  StyledForm,
+  StyledSearchFormBtn,
+  StyledSpan,
+  StyledInput,
+  LoginWrp,
+} from './Searchbar.styled';
+
+// import 'react-toastify/dist/ReactToastify.css';
+
+import { AiOutlineSearch } from 'react-icons/ai';
+import { WiAlien } from 'react-icons/wi';
+
+import { useState } from 'react';
+
+const Searchbar = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleInputValue = e => {
+    setSearchQuery(e.currentTarget.value.toLowerCase());
+  };
+  // const handleFormSubmit = e => {
+  //   e.preventDefault();
+  //   onFormSubmit(searchQuery);
+  //   setSearchQuery('');
+  // };
+
+  return (
+    <StyledFormWrapper>
+      <LoginWrp type="button">
+        <WiAlien
+          style={{
+            position: 'absolute',
+            left: '0',
+            top: '0',
+            width: '39',
+            height: '39',
+          }}
+        />
+      </LoginWrp>
+      <StyledForm>
+        <StyledSearchFormBtn type="submit">
+          <AiOutlineSearch
+            style={{
+              position: 'absolute',
+              display: 'block',
+              width: '14',
+              height: '14',
+              left: '50%',
+              transform: 'translateX(-50%)',
+            }}
+          />
+          <StyledSpan>Search</StyledSpan>
+        </StyledSearchFormBtn>
+
+        <StyledInput
+          onChange={handleInputValue}
+          value={searchQuery}
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search or start new chat"
+        />
+      </StyledForm>
+    </StyledFormWrapper>
+  );
+};
+// class Searchbar1 extends Component {
+//   state = {
+//     searchQuery: '',
+//   };
+//   handleImputValue = e => {
+//     this.setState({ searchQuery: e.currentTarget.value.toLowerCase() });
+//   };
+//   handleSubmit = e => {
+//     e.preventDefault();
+// if (this.state.searchQuery.trim() === '') {
+//   toast('can`t be empty');
+//   return;
+// }
+//
+//     this.props.onSubmit(this.state.searchQuery);
+//     this.setState({ searchQuery: '' });
+//   };
+//   render() {
+//     return (
+//       <StyledHeader>
+//         <StyledForm onSubmit={this.handleSubmit}>
+//           <StyledSearchFormBtn type="submit">
+//             <AiOutlineSearch
+//               style={{
+//                 width: '20',
+//                 height: '20',
+//                 verticalAlign: 'middle',
+//               }}
+//             />
+//             <StyledSpan>Search</StyledSpan>
+//           </StyledSearchFormBtn>
+
+//           <StyledInput
+//             onChange={this.handleImputValue}
+//             value={this.state.searchQuery}
+//             type="text"
+//             autoComplete="off"
+//             autoFocus
+//             placeholder="Search images and photos"
+//           />
+//         </StyledForm>
+//       </StyledHeader>
+//     );
+//   }
+// }
+
+export default Searchbar;
