@@ -35,7 +35,7 @@ export const StyledForm = styled.form`
   border-radius: 20px;
 `;
 
-export const StyledSearchFormBtn = styled.button`
+export const StyledSearchFormBtn = styled.span`
   display: inline-block;
   width: 30px;
   height: inherit;

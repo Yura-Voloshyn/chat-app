@@ -35,7 +35,12 @@ const Searchbar = () => {
           autoFocus
           placeholder="Type your message"
         />
-        <StyledFormBtn type="text">
+        <StyledFormBtn
+          type="button"
+          onClick={e => {
+            e.preventDefault();
+          }}
+        >
           <IoIosSend
             style={{
               position: 'absolute',

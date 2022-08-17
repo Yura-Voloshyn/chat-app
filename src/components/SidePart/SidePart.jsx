@@ -14,7 +14,7 @@ export const SidePart = ({ value, onChange }) => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(usersConversation));
+    localStorage.setItem('users', JSON.stringify(usersConversation));
   }, [usersConversation]);
 
   const deleteContact = userId => {

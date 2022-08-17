@@ -32,7 +32,12 @@ const Searchbar = ({ onSubmit, onChange, value }) => {
 
   return (
     <StyledFormWrapper>
-      <LoginWrp type="button">
+      <LoginWrp
+        type="button"
+        onClick={e => {
+          e.preventDefault();
+        }}
+      >
         <WiAlien
           style={{
             position: 'absolute',
@@ -44,7 +49,7 @@ const Searchbar = ({ onSubmit, onChange, value }) => {
         />
       </LoginWrp>
       <StyledForm onSubmit={handleSubmit}>
-        <StyledSearchFormBtn type="submit">
+        <StyledSearchFormBtn>
           <AiOutlineSearch
             style={{
               position: 'absolute',
@@ -52,7 +57,8 @@ const Searchbar = ({ onSubmit, onChange, value }) => {
               width: '14',
               height: '14',
               left: '50%',
-              transform: 'translateX(-50%)',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
             }}
           />
           <StyledSpan>Search</StyledSpan>
