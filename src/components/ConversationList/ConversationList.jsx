@@ -1,25 +1,43 @@
 import {
   ConversationListWrapper,
   ConversationInnerList,
-  ConversationListItem,
-  ConversationListImage,
-  ConversationListItemContext,
   ConversationListTitle,
 } from './ConversationList.styled';
 
-export const ConversationList = () => {
+import { ConversationListItem } from '../ConversationListItem/ConversationListItem';
+
+// import FriendListItem from './FriendListItem';
+// import friends from '../jsonData/friends.json';
+// import FriendListItem from './FriendListItem';
+// const FriendList = ({friends}) => {
+//   return (
+//     <ul className="friend-list">
+//       {friends.map(friend => (
+//         <FriendListItem
+//           key={friend.id}
+//           avatar={friend.avatar}
+//           name={friend.name}
+//           isOnline={friend.isOnline}
+//         />
+//       ))}
+//     </ul>
+//   );
+// };
+
+export const ConversationList = ({ users, onDeleteContact }) => {
   return (
     <ConversationListWrapper>
-      <ConversationListTitle>Chats</ConversationListTitle>
+      <ConversationListTitle>Chat</ConversationListTitle>
       <ConversationInnerList>
-        <ConversationListItem style={{ borderBottom: '1px solid #cacaca' }}>
-          {' '}
-          <ConversationListImage src="" alt="" />{' '}
-          <ConversationListItemContext>
-            {' '}
-            <h3>user</h3> <p>chattext</p>{' '}
-          </ConversationListItemContext>{' '}
-        </ConversationListItem>
+        {users.map(({ id, name, avatar, isOnline }) => (
+          <ConversationListItem
+            key={id}
+            avatar={avatar}
+            name={name}
+            isOnline={isOnline}
+            onDeleteContact={() => onDeleteContact(id)}
+          />
+        ))}
       </ConversationInnerList>
     </ConversationListWrapper>
   );

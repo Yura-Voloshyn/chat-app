@@ -1,7 +1,7 @@
 import {
   StyledFormWrapper,
   StyledForm,
-  StyledSearchFormBtn,
+  StyledFormBtn,
   StyledSpan,
   StyledInput,
 } from './Inputbar.styled';
@@ -35,7 +35,7 @@ const Searchbar = () => {
           autoFocus
           placeholder="Type your message"
         />
-        <StyledSearchFormBtn type="submit">
+        <StyledFormBtn type="text">
           <IoIosSend
             style={{
               position: 'absolute',
@@ -48,7 +48,7 @@ const Searchbar = () => {
             }}
           />
           <StyledSpan>Search</StyledSpan>
-        </StyledSearchFormBtn>
+        </StyledFormBtn>
       </StyledForm>
     </StyledFormWrapper>
   );

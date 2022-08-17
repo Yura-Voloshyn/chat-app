@@ -13,14 +13,15 @@ export const StyledFormWrapper = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   width: 100%;
+  height: 100%;
   background-color: #fff;
   border-radius: 3px;
   overflow: hidden;
   border: 1px solid gray;
-  border-radius: 20px;
+  border-radius: 25px;
 `;
 
-export const StyledSearchFormBtn = styled.button`
+export const StyledFormBtn = styled.button`
   display: inline-block;
   width: 50px;
   height: inherit;
@@ -49,23 +50,22 @@ export const StyledSpan = styled.span`
   clip-path: inset(50%);
   border: 0;
 `;
-export const StyledInput = styled.input`
-  height: 40px;
+export const StyledInput = styled.textarea`
   display: inline-block;
   width: 100%;
 
   font: inherit;
-  font-size: 12px;
+  font-size: 14px;
   border: none;
   outline: none;
-  padding-left: 10px;
-  padding-right: 4px;
-  size: 50px;
+  padding: 4px 16px;
+  resize: none;
+  /* padding-left: 16px;
+  padding-right: 4px; */
+  /* size: 50px; */
   &::placeholder {
     font: inherit;
-    font-size: 12px;
-    vertical-align: center;
-    /* padding-left: 10px; */
+    font-size: 14px;
   }
 `;
 /*
