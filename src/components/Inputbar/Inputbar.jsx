@@ -12,35 +12,31 @@ import {
 import { IoIosSend } from 'react-icons/io';
 import { useState } from 'react';
 
-const Searchbar = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+const Inputbar = ({ onChatSubmit }) => {
+  const [message, setMessage] = useState('');
 
   const handleInputValue = e => {
-    setSearchQuery(e.currentTarget.value.toLowerCase());
+    setMessage(e.currentTarget.value);
   };
-  // const handleFormSubmit = e => {
-  //   e.preventDefault();
-  //   onFormSubmit(searchQuery);
-  //   setSearchQuery('');
-  // };
-  // IoIosSend;
+  const handleChatSubmit = e => {
+    e.preventDefault();
+    onChatSubmit(message);
+    setMessage('');
+  };
+
   return (
     <StyledFormWrapper>
-      <StyledForm>
+      <StyledForm onSubmit={handleChatSubmit}>
         <StyledInput
           onChange={handleInputValue}
-          value={searchQuery}
+          message={message}
+          value={message}
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Type your message"
         />
-        <StyledFormBtn
-          type="button"
-          onClick={e => {
-            e.preventDefault();
-          }}
-        >
+        <StyledFormBtn type="submit">
           <IoIosSend
             style={{
               position: 'absolute',
@@ -58,50 +54,5 @@ const Searchbar = () => {
     </StyledFormWrapper>
   );
 };
-// class Searchbar1 extends Component {
-//   state = {
-//     searchQuery: '',
-//   };
-//   handleImputValue = e => {
-//     this.setState({ searchQuery: e.currentTarget.value.toLowerCase() });
-//   };
-//   handleSubmit = e => {
-//     e.preventDefault();
-// if (this.state.searchQuery.trim() === '') {
-//   toast('can`t be empty');
-//   return;
-// }
-//
-//     this.props.onSubmit(this.state.searchQuery);
-//     this.setState({ searchQuery: '' });
-//   };
-//   render() {
-//     return (
-//       <StyledHeader>
-//         <StyledForm onSubmit={this.handleSubmit}>
-//           <StyledSearchFormBtn type="submit">
-//             <AiOutlineSearch
-//               style={{
-//                 width: '20',
-//                 height: '20',
-//                 verticalAlign: 'middle',
-//               }}
-//             />
-//             <StyledSpan>Search</StyledSpan>
-//           </StyledSearchFormBtn>
 
-//           <StyledInput
-//             onChange={this.handleImputValue}
-//             value={this.state.searchQuery}
-//             type="text"
-//             autoComplete="off"
-//             autoFocus
-//             placeholder="Search images and photos"
-//           />
-//         </StyledForm>
-//       </StyledHeader>
-//     );
-//   }
-// }
-
-export default Searchbar;
+export default Inputbar;

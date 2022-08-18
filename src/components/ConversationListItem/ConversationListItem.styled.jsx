@@ -33,3 +33,13 @@ export const FriendOnlineStatus = styled.span`
   border-radius: 50%;
   background-color: ${user => (user.isOnline ? 'green' : 'red')};
 `;
+
+export const StyledH3 = styled.h3`
+  font-size: 14;
+  font-weight: 400;
+  color: #707070;
+`;
+export const StyledP = styled.p`
+  font-size: 10px;
+  color: #999999;
+`;

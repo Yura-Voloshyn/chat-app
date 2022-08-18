@@ -22,7 +22,7 @@ export const LoginWrp = styled.button`
   cursor: pointer;
   color: black;
 `;
-export const StyledForm = styled.form`
+export const StyledForm = styled.div`
   display: flex;
   align-items: center;
   width: 100%;

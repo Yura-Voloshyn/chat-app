@@ -6,7 +6,7 @@ import {
   StyledInput,
   LoginWrp,
 } from './Searchbar.styled';
-import { useState } from 'react';
+// import { useState } from 'react';
 // import 'react-toastify/dist/ReactToastify.css';
 
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -14,21 +14,21 @@ import { WiAlien } from 'react-icons/wi';
 
 // import { useState } from 'react';
 
-const Searchbar = ({ onSubmit, onChange, value }) => {
-  const [name, setName] = useState();
+const Searchbar = ({ onChange, value }) => {
+  // const [name, setName] = useState();
   // const [searchQuery, setSearchQuery] = useState('');
 
   // const handleInputValue = e => {
   //   setSearchQuery(e.currentTarget.value.toLowerCase());
   // };
-  const handleSubmit = e => {
-    e.preventDefault();
-    onSubmit({ name });
-    reset();
-  };
-  const reset = () => {
-    setName('');
-  };
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   onSubmit({ name });
+  //   reset();
+  // };
+  // const reset = () => {
+  //   setName('');
+  // };
 
   return (
     <StyledFormWrapper>
@@ -48,7 +48,7 @@ const Searchbar = ({ onSubmit, onChange, value }) => {
           }}
         />
       </LoginWrp>
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm>
         <StyledSearchFormBtn>
           <AiOutlineSearch
             style={{

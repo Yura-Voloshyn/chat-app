@@ -3,30 +3,55 @@
     "avatar": "https://xsgames.co/randomusers/assets/avatars/male/75.jpg",
     "name": "Mango",
     "isOnline": true,
-    "id": 1812
+    "id": 1812,
+    "history":[
+      {"message":""},
+      {"date": ""},
+      {"isMineMessage": false}
+    ]
   },
   {
     "avatar": "https://xsgames.co/randomusers/assets/avatars/female/11.jpg",
     "name": "Kiwi",
     "isOnline": false,
-    "id": 1137
+    "id": 1137,
+    "history":{
+      "message":"",
+      "date": "",
+      "isMineMessage": false
+    }
   },
   {
     "avatar": "https://xsgames.co/randomusers/assets/avatars/female/1.jpg",
     "name": "Ajax",
     "isOnline": true,
-    "id": 1213
+    "id": 1213,
+    "history":{
+      "message":"",
+      "date": "",
+      "isMineMessage": false
+    }
   },
   {
     "avatar": "https://xsgames.co/randomusers/assets/avatars/male/73.jpg",
     "name": "Jay",
     "isOnline": true,
-    "id": 1714
+    "id": 1714,
+    "history":{
+      "message":"",
+      "date": "",
+      "isMineMessage": false
+    }
   },
   {
     "avatar": "https://xsgames.co/randomusers/assets/avatars/female/0.jpg",
     "name": "Poly",
     "isOnline": false,
-    "id": 1284
+    "id": 1284,
+    "history":{
+      "message":"",
+      "date": "",
+      "isMineMessage": false
+    }
   }
 ]

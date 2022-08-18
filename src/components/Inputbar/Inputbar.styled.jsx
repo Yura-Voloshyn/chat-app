@@ -65,7 +65,8 @@ export const StyledInput = styled.textarea`
   /* size: 50px; */
   &::placeholder {
     font: inherit;
-    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
   }
 `;
 /*

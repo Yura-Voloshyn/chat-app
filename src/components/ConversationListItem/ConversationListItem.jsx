@@ -3,6 +3,8 @@ import {
   ConversationListItemImage,
   ConversationListItemContext,
   FriendOnlineStatus,
+  StyledH3,
+  StyledP,
 } from './ConversationListItem.styled';
 // import { GrStatusGood } from 'react-icons/gr';
 
@@ -28,7 +30,7 @@ export const ConversationListItem = ({
       <ConversationListItemImage src={avatar} alt={name} width="48" />{' '}
       <ConversationListItemContext>
         {' '}
-        <h3>{name}</h3> <p>Lorem, ipsum dolor.</p>{' '}
+        <StyledH3>{name}</StyledH3> <StyledP>Lorem, ipsum dolor.</StyledP>{' '}
       </ConversationListItemContext>{' '}
       <FriendOnlineStatus isOnline={isOnline}>
         {' '}
@@ -36,7 +38,21 @@ export const ConversationListItem = ({
           
         />{' '} */}
       </FriendOnlineStatus>
-      <button onClick={() => onDeleteContact(id)}>x</button>
+      <button
+        style={{
+          cursor: 'pointer',
+          fontSize: '10px',
+          color: '#707070',
+          width: '15px',
+          height: '15px',
+          borderRadius: '50%',
+          border: '1px solid #707070',
+          outline: 'none',
+        }}
+        onClick={() => onDeleteContact(id)}
+      >
+        x
+      </button>
     </StyledLi>
   );
 };
