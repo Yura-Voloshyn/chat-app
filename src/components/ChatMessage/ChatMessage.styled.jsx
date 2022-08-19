@@ -13,3 +13,10 @@ export const StyledMessage = styled.p`
   color: ${message => (message.fromChack ? '#fff' : '#000')};
   border-radius: 15px;
 `;
+
+export const StyledDate = styled.p`
+  margin-top: 10px;
+  font-size: 12px;
+  color: #969696;
+  align-self: ${message => (message.fromChack ? 'flex-start' : 'flex-end')};
+`;
