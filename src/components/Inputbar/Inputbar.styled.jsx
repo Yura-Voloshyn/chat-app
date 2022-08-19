@@ -13,7 +13,7 @@ export const StyledFormWrapper = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   background-color: #fff;
   border-radius: 3px;
   overflow: hidden;
@@ -50,7 +50,7 @@ export const StyledSpan = styled.span`
   clip-path: inset(50%);
   border: 0;
 `;
-export const StyledInput = styled.textarea`
+export const StyledInput = styled.input`
   display: inline-block;
   width: 100%;
 
@@ -65,7 +65,7 @@ export const StyledInput = styled.textarea`
   /* size: 50px; */
   &::placeholder {
     font: inherit;
-    text-align: center;
+    /* text-align: center; */
     vertical-align: middle;
   }
 `;

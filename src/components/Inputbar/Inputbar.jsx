@@ -15,6 +15,28 @@ import { useState } from 'react';
 const Inputbar = ({ onChatSubmit }) => {
   const [message, setMessage] = useState('');
 
+  // const handleKeyDown = e => {
+  //   if (e.key === 'Enter' && !e.shiftKey) {
+  //     e.stopPropagation();
+  //     // e.preventDefault();
+  //     if (message.trim().split('<br>').join('') !== '') {
+  //       onChatSubmit(message);
+  //     }
+  //   }
+  // };
+  // useEffect(() => {
+  //   const handleKeyDown = e => {
+  //     // console.log(e.code);
+  //     if (e.code === 'Enter') {
+  //       // console.log(e.code);
+  //       onChatSubmit(message);
+  //       setMessage('');
+  //     }
+  //   };
+  //   window.addEventListener('keydown', handleKeyDown);
+  //   return () => window.removeEventListener('keydown', handleKeyDown);
+  // }, [message, onChatSubmit]);
+
   const handleInputValue = e => {
     setMessage(e.currentTarget.value);
   };
@@ -35,14 +57,15 @@ const Inputbar = ({ onChatSubmit }) => {
           autoComplete="off"
           autoFocus
           placeholder="Type your message"
+          // onKeyDown={handleKeyDown}
         />
         <StyledFormBtn type="submit">
           <IoIosSend
             style={{
               position: 'absolute',
               display: 'block',
-              width: '25',
-              height: '25',
+              width: '20',
+              height: '20',
               left: '50%',
               top: '50%',
               transform: 'translate(-50%, -50%)',

@@ -46,7 +46,8 @@ export const ConversationListItem = ({
           width: '15px',
           height: '15px',
           borderRadius: '50%',
-          border: '1px solid #707070',
+          border: 'none',
+          padding: '2px',
           outline: 'none',
         }}
         onClick={() => onDeleteContact(id)}
