@@ -42,7 +42,7 @@ export const ConversationListItem = ({
           <AiFillCheckCircle style={{ width: '15px', height: '15px' }} />
         )}
       </FriendOnlineStatus>
-      <button
+      {/* <button
         style={{
           cursor: 'pointer',
           fontSize: '10px',
@@ -57,7 +57,7 @@ export const ConversationListItem = ({
         onClick={() => onDeleteContact(id)}
       >
         x
-      </button>
+      </button> */}
     </StyledLi>
   );
 };

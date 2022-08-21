@@ -6,11 +6,11 @@ export const StyledMessage = styled.p`
   max-width: 80%;
   white-space: pre-line;
   margin-top: 10px;
-  align-self: ${message => (message.fromChack ? 'flex-start' : 'flex-end')};
+  align-self: ${message => (!message.isMine ? 'flex-start' : 'flex-end')};
   /* align-self: flex-end; */
   padding: 4px 8px;
-  background-color: ${message => (message.fromChack ? '#44435c' : '#cacaca')};
-  color: ${message => (message.fromChack ? '#fff' : '#000')};
+  background-color: ${message => (!message.isMine ? '#44435c' : '#cacaca')};
+  color: ${message => (!message.isMine ? '#fff' : '#000')};
   border-radius: 15px;
 `;
 
@@ -18,5 +18,5 @@ export const StyledDate = styled.p`
   margin-top: 10px;
   font-size: 12px;
   color: #969696;
-  align-self: ${message => (message.fromChack ? 'flex-start' : 'flex-end')};
+  align-self: ${message => (!message.isMine ? 'flex-start' : 'flex-end')};
 `;

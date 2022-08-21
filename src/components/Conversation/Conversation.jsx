@@ -9,18 +9,24 @@ import {
 import Inputbar from '../Inputbar';
 import ChatMessage from '../ChatMessage/ChatMessage';
 import getApiResult from 'services/apiRandomMessage';
+import { getUserHistory, saveHistory } from 'services/useLocalStorage';
 
-// const chatField = window.document.querySelector('.forScroll');
-// console.log(chatField);
 let timeoutId = null;
-export const Conversation = ({ userId, userName, userAvatar }) => {
+export const Conversation = ({
+  userId,
+  userName,
+  userAvatar,
+  conversation,
+}) => {
   const [messages, setMessages] = useState(() => {
-    return JSON.parse(window.localStorage.getItem(`${userId}`)) ?? [];
+    return getUserHistory(userId);
   });
 
+  const [lastMessage, setLastMessage] = useState({});
+
   useEffect(() => {
-    localStorage.setItem(`${userId}`, JSON.stringify(messages));
-  }, [messages, userId]);
+    saveHistory(userId, lastMessage);
+  }, [lastMessage, userId]);
 
   const divRef = useRef(null);
 
@@ -35,29 +41,44 @@ export const Conversation = ({ userId, userName, userAvatar }) => {
     timeoutId = setTimeout(() => {
       try {
         const chackMessage = getApiResult().then(res =>
-          setMessages(prevMessage => [...prevMessage, res.value])
+          setMessages(prevMessage => [
+            ...prevMessage,
+            {
+              message: res.value,
+              date: new Date().toLocaleString(),
+              isMine: false,
+            },
+          ])
         );
-        console.log(chackMessage);
+        const chackLastMessage = getApiResult().then(res =>
+          setLastMessage({
+            message: res.value,
+            date: new Date().toLocaleString(),
+            isMine: false,
+          })
+        );
       } catch (error) {
         console.log('error');
       }
     }, 2000);
   };
 
-  const date = new Date();
-
   const handleSendMessage = message => {
     if (message.trim() === '') {
       return;
     }
+    const myMessageToState = {
+      message,
+      date: new Date().toLocaleString(),
+      isMine: true,
+    };
 
-    setMessages(prevMessage => [...prevMessage, message]);
-    date.toLocaleString();
+    setMessages(prevMessage =>
+      !prevMessage ? [myMessageToState] : [...prevMessage, myMessageToState]
+    );
+    setLastMessage(myMessageToState);
     chackMessageRecive();
   };
-  // align-self: ${message =>
-  //     message.includes('Chuck Norris') ? 'flex-end' : 'flex-start'};
-  /* align-self: flex-end; */
 
   return (
     <ConversationWrapper>
@@ -66,26 +87,18 @@ export const Conversation = ({ userId, userName, userAvatar }) => {
         {userName}
       </ConversationUserName>
       <ConversationChatField>
-        {!messages.length ? (
+        {!messages ? (
           <p>Start your conversation</p>
         ) : (
-          messages.map(message => {
-            const fromChack =
-              message.toLowerCase().includes('Chuck Norris') ||
-              message.includes('CHUCK NORRIS');
-
-            //   console.log(date);
-            //   date.toLocaleString();
+          messages.map(({ message, date, isMine }) => {
             return (
               <ChatMessage
+                messages={conversation}
                 userId={userId}
                 key={nanoid()}
-                fromChack={
-                  message.includes('CHUCK NORRIS') ||
-                  message.includes('Chuck Norris')
-                }
-                message={message ?? fromChack}
-                date={date.toLocaleString()}
+                isMine={isMine}
+                message={message}
+                date={date}
               />
             );
           })

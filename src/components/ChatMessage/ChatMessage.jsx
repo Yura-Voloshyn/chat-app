@@ -1,10 +1,10 @@
 import { StyledMessage, StyledDate } from './ChatMessage.styled';
 
-const ChatMessage = ({ message, fromChack, date }) => {
+const ChatMessage = ({ message, date, isMine }) => {
   return (
     <>
-      <StyledMessage fromChack={fromChack}>{message}</StyledMessage>
-      <StyledDate fromChack={fromChack}>{date}</StyledDate>
+      <StyledMessage isMine={isMine}>{message}</StyledMessage>
+      <StyledDate isMine={isMine}>{date}</StyledDate>
     </>
   );
 };
