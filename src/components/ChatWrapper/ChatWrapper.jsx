@@ -1,7 +1,7 @@
 import { SidePart } from '../SidePart/SidePart';
 import { Conversation } from '../Conversation/Conversation';
 import { useState } from 'react';
-import { getUserHistory } from 'services/useLocalStorage';
+// import { getUserHistory } from 'services/useLocalStorage';
 
 export const ChatWrapper = () => {
   // const [userConversation, setUserConversation] = useState('');
