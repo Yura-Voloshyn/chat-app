@@ -9,7 +9,11 @@ export const ConversationWrapper = styled.div`
 `;
 
 export const ConversationUserName = styled.h2`
+  font-weight: 500;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 
 export const ConversationChatField = styled.div`
@@ -23,4 +27,11 @@ export const ConversationChatField = styled.div`
   padding: 10px;
   height: 100%;
   overflow-y: auto;
+`;
+export const ConversationUserAvatar = styled.img`
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-items: center;
 `;

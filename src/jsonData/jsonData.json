@@ -44,6 +44,39 @@
     }
   },
   {
+    "avatar": "https://xsgames.co/randomusers/assets/avatars/male/74.jpg",
+    "name": "Robert",
+    "isOnline": true,
+    "id": 1598,
+    "history":{
+      "message":"",
+      "date": "",
+      "isMineMessage": false
+    }
+  },
+  {
+    "avatar": "https://xsgames.co/randomusers/assets/avatars/female/3.jpg",
+    "name": "Nensi",
+    "isOnline": false,
+    "id": 1547,
+    "history":{
+      "message":"",
+      "date": "",
+      "isMineMessage": false
+    }
+  },
+  {
+    "avatar": "https://xsgames.co/randomusers/assets/avatars/female/31.jpg",
+    "name": "Margo",
+    "isOnline": true,
+    "id": 1568,
+    "history":{
+      "message":"",
+      "date": "",
+      "isMineMessage": false
+    }
+  },
+  {
     "avatar": "https://xsgames.co/randomusers/assets/avatars/female/0.jpg",
     "name": "Poly",
     "isOnline": false,

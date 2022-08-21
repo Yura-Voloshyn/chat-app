@@ -24,18 +24,20 @@ import { ConversationListItem } from '../ConversationListItem/ConversationListIt
 //   );
 // };
 
-export const ConversationList = ({ users, onDeleteContact }) => {
+export const ConversationList = ({ users, onDeleteContact, onUserClick }) => {
   return (
     <ConversationListWrapper>
       <ConversationListTitle>Chat</ConversationListTitle>
       <ConversationInnerList>
         {users.map(({ id, name, avatar, isOnline }) => (
           <ConversationListItem
+            onClick
             key={id}
             avatar={avatar}
             name={name}
             isOnline={isOnline}
             onDeleteContact={() => onDeleteContact(id)}
+            onUserClick={() => onUserClick(id, name, avatar)}
           />
         ))}
       </ConversationInnerList>

@@ -7,7 +7,7 @@ import { SidePartWrapper } from './SidePart.styled';
 import users from '../../jsonData/jsonData.json';
 const usersExample = users;
 
-export const SidePart = ({ value, onChange }) => {
+export const SidePart = ({ value, handleUserClick }) => {
   const [usersConversation, setUsersConversation] = useState(() => {
     return JSON.parse(window.localStorage.getItem('users')) ?? usersExample;
   });
@@ -44,6 +44,10 @@ export const SidePart = ({ value, onChange }) => {
     );
   };
 
+  // const handleUserClick = id => {
+  //   console.log(id);
+  // };
+
   return (
     <SidePartWrapper>
       <Searchbar
@@ -52,6 +56,7 @@ export const SidePart = ({ value, onChange }) => {
         onChange={changeFilter}
       />
       <ConversationList
+        onUserClick={handleUserClick}
         users={getFilteredConversation()}
         onDeleteContact={deleteContact}
         value={filter}

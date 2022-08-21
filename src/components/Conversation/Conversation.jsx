@@ -4,6 +4,7 @@ import {
   ConversationWrapper,
   ConversationUserName,
   ConversationChatField,
+  ConversationUserAvatar,
 } from './Conversation.styled';
 import Inputbar from '../Inputbar';
 import ChatMessage from '../ChatMessage/ChatMessage';
@@ -12,21 +13,14 @@ import getApiResult from 'services/apiRandomMessage';
 // const chatField = window.document.querySelector('.forScroll');
 // console.log(chatField);
 let timeoutId = null;
-export const Conversation = ({ userId }) => {
+export const Conversation = ({ userId, userName, userAvatar }) => {
   const [messages, setMessages] = useState(() => {
-    return JSON.parse(window.localStorage.getItem(`user-chat${userId}`)) ?? [];
+    return JSON.parse(window.localStorage.getItem(`${userId}`)) ?? [];
   });
 
   useEffect(() => {
-    localStorage.setItem(`user-chat${userId}`, JSON.stringify(messages));
+    localStorage.setItem(`${userId}`, JSON.stringify(messages));
   }, [messages, userId]);
-  //   const [chackMessages, setChackMessages] = useState('');
-  //   const [chackMessages, setChackMessages] = useState('');
-  //   const setRef = useCallback(node => {
-  //     if (node) {
-  //       node.scrollIntoView({ smooth: true });
-  //     }
-  //   }, []);
 
   const divRef = useRef(null);
 
@@ -34,24 +28,8 @@ export const Conversation = ({ userId }) => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // getFetch();
-  //   useEffect(() => {
-  //     async function getFetch() {
-  //       try {
-  //         const chackMessage = await getApiResult();
-  //         // console.log(chackMessage);
-  //         setMessages(prevMessage => [...prevMessage, chackMessage.value]);
-  //       } catch (error) {
-  //         console.log('eror');
-  //       }
-  //     }
-  //     // window.setTimeout(function () {
-  //     //   getFetch();
-  //     // }, 5000);
-  //     getFetch();
-  //   }, []);
   const chackMessageRecive = () => {
-    if (timeoutId !== null) {
+    if (timeoutId) {
       clearTimeout(timeoutId);
     }
     timeoutId = setTimeout(() => {
@@ -65,7 +43,7 @@ export const Conversation = ({ userId }) => {
       }
     }, 2000);
   };
-  // 4392.08;
+
   const date = new Date();
 
   const handleSendMessage = message => {
@@ -83,7 +61,10 @@ export const Conversation = ({ userId }) => {
 
   return (
     <ConversationWrapper>
-      <ConversationUserName>Name</ConversationUserName>
+      <ConversationUserName>
+        <ConversationUserAvatar src={userAvatar} alt={userName} width="48" />
+        {userName}
+      </ConversationUserName>
       <ConversationChatField>
         {!messages.length ? (
           <p>Start your conversation</p>
@@ -97,6 +78,7 @@ export const Conversation = ({ userId }) => {
             //   date.toLocaleString();
             return (
               <ChatMessage
+                userId={userId}
                 key={nanoid()}
                 fromChack={
                   message.includes('CHUCK NORRIS') ||

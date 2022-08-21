@@ -6,7 +6,7 @@ import {
   StyledH3,
   StyledP,
 } from './ConversationListItem.styled';
-// import { GrStatusGood } from 'react-icons/gr';
+import { AiFillCheckCircle } from 'react-icons/ai';
 
 // export const FriendListItem = ({ avatar, name, isOnline }) => {
 //   return (
@@ -23,9 +23,13 @@ export const ConversationListItem = ({
   isOnline,
   id,
   onDeleteContact,
+  onUserClick,
 }) => {
   return (
-    <StyledLi style={{ borderBottom: '1px solid #cacaca' }}>
+    <StyledLi
+      onClick={() => onUserClick(id, name, avatar)}
+      style={{ borderBottom: '1px solid #cacaca' }}
+    >
       {' '}
       <ConversationListItemImage src={avatar} alt={name} width="48" />{' '}
       <ConversationListItemContext>
@@ -34,9 +38,9 @@ export const ConversationListItem = ({
       </ConversationListItemContext>{' '}
       <FriendOnlineStatus isOnline={isOnline}>
         {' '}
-        {/* <GrStatusGood
-          
-        />{' '} */}
+        {isOnline && (
+          <AiFillCheckCircle style={{ width: '15px', height: '15px' }} />
+        )}
       </FriendOnlineStatus>
       <button
         style={{

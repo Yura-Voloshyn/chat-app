@@ -8,6 +8,10 @@ export const StyledLi = styled.li`
   position: relative;
   align-items: center;
   padding: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #dddddd;
+  }
 `;
 
 export const ConversationListItemImage = styled.img`
@@ -28,10 +32,10 @@ export const FriendOnlineStatus = styled.span`
   position: absolute;
   left: 40px;
   bottom: 4px;
-  height: 10px;
-  width: 10px;
+  /* height: 10px;
+  width: 10px; */
   border-radius: 50%;
-  background-color: ${user => (user.isOnline ? 'green' : 'red')};
+  color: ${user => (user.isOnline ? 'green' : 'red')};
 `;
 
 export const StyledH3 = styled.h3`
