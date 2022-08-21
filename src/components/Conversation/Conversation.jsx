@@ -57,6 +57,7 @@ export const Conversation = ({
             isMine: false,
           })
         );
+        console.log(chackMessage, chackLastMessage);
       } catch (error) {
         console.log('error');
       }
