@@ -3,7 +3,7 @@ import { Conversation } from '../Conversation/Conversation';
 import { useState } from 'react';
 // import { getUserHistory } from 'services/useLocalStorage';
 
-export const ChatWrapper = () => {
+export const ChatWrapper = ({ messages }) => {
   // const [userConversation, setUserConversation] = useState('');
   const [userId, setUserId] = useState('');
   const [userName, setUserName] = useState('');
@@ -26,7 +26,7 @@ export const ChatWrapper = () => {
           userAvatar={userAvatar}
           userName={userName}
           userId={userId}
-          // messages={messages}
+          messages={messages}
         />
       )}
     </>

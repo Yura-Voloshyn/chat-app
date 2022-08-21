@@ -17,6 +17,8 @@ export const SidePart = ({ value, handleUserClick }) => {
     localStorage.setItem('users', JSON.stringify(usersConversation));
   }, [usersConversation]);
 
+  // юзефект прийме нову айді і мувнути на початок списку
+
   const deleteContact = userId => {
     setUsersConversation(prevState =>
       prevState.filter(user => user.id !== userId)

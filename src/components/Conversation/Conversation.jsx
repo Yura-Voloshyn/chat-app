@@ -12,21 +12,23 @@ import getApiResult from 'services/apiRandomMessage';
 import { getUserHistory, saveHistory } from 'services/useLocalStorage';
 
 let timeoutId = null;
-export const Conversation = ({
-  userId,
-  userName,
-  userAvatar,
-  conversation,
-}) => {
+export const Conversation = ({ userId, userName, userAvatar }) => {
   const [messages, setMessages] = useState(() => {
     return getUserHistory(userId);
   });
 
-  const [lastMessage, setLastMessage] = useState({});
+  const [lastMessage, setLastMessage] = useState(null);
 
   useEffect(() => {
-    saveHistory(userId, lastMessage);
-  }, [lastMessage, userId]);
+    if (lastMessage !== null) {
+      saveHistory(userId, lastMessage);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastMessage]);
+
+  useEffect(() => {
+    setMessages(getUserHistory(userId));
+  }, [userId]);
 
   const divRef = useRef(null);
 
@@ -40,24 +42,25 @@ export const Conversation = ({
     }
     timeoutId = setTimeout(() => {
       try {
-        const chackMessage = getApiResult().then(res =>
-          setMessages(prevMessage => [
-            ...prevMessage,
-            {
-              message: res.value,
-              date: new Date().toLocaleString(),
-              isMine: false,
-            },
-          ])
-        );
-        const chackLastMessage = getApiResult().then(res =>
+        const chackMessage = getApiResult().then(res => {
+          setMessages(
+            prevMessage =>
+              [
+                ...prevMessage,
+                {
+                  message: res.value,
+                  date: new Date().toLocaleString(),
+                  isMine: false,
+                },
+              ] || ''
+          );
           setLastMessage({
             message: res.value,
             date: new Date().toLocaleString(),
             isMine: false,
-          })
-        );
-        console.log(chackMessage, chackLastMessage);
+          });
+        });
+        console.log(chackMessage);
       } catch (error) {
         console.log('error');
       }
@@ -78,6 +81,9 @@ export const Conversation = ({
       !prevMessage ? [myMessageToState] : [...prevMessage, myMessageToState]
     );
     setLastMessage(myMessageToState);
+
+    // відправити айді юзера ту зе сайт панел
+
     chackMessageRecive();
   };
 
@@ -88,13 +94,12 @@ export const Conversation = ({
         {userName}
       </ConversationUserName>
       <ConversationChatField>
-        {!messages ? (
+        {!messages.length ? (
           <p>Start your conversation</p>
         ) : (
           messages.map(({ message, date, isMine }) => {
             return (
               <ChatMessage
-                messages={conversation}
                 userId={userId}
                 key={nanoid()}
                 isMine={isMine}
@@ -103,9 +108,6 @@ export const Conversation = ({
               />
             );
           })
-          //   chackMessages.map(message => {
-          //     return <ChatMessage key={nanoid()} message={message} />;
-          //   })
         )}
         <div ref={divRef} />
       </ConversationChatField>
