@@ -20,7 +20,7 @@ export const ChatWrapper = ({ messages }) => {
 
   return (
     <>
-      <SidePart handleUserClick={handleUserClick} />
+      <SidePart lastUserMessage={userName} handleUserClick={handleUserClick} />
       {userId && (
         <Conversation
           userAvatar={userAvatar}

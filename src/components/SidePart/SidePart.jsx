@@ -7,7 +7,7 @@ import { SidePartWrapper } from './SidePart.styled';
 import users from '../../jsonData/jsonData.json';
 const usersExample = users;
 
-export const SidePart = ({ value, handleUserClick }) => {
+export const SidePart = ({ value, handleUserClick, lastUserMessage }) => {
   const [usersConversation, setUsersConversation] = useState(() => {
     return JSON.parse(window.localStorage.getItem('users')) ?? usersExample;
   });
@@ -54,6 +54,7 @@ export const SidePart = ({ value, handleUserClick }) => {
         onChange={changeFilter}
       />
       <ConversationList
+        lastUserMessage={lastUserMessage}
         onUserClick={handleUserClick}
         users={getFilteredConversation()}
         onDeleteContact={deleteContact}

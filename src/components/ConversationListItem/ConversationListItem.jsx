@@ -22,19 +22,16 @@ export const ConversationListItem = ({
   name,
   isOnline,
   id,
-  onDeleteContact,
   onUserClick,
+  lastUserMessage,
 }) => {
   return (
-    <StyledLi
-      onClick={() => onUserClick(id, name, avatar)}
-      style={{ borderBottom: '1px solid #cacaca' }}
-    >
+    <StyledLi onClick={() => onUserClick(id, name, avatar)}>
       {' '}
       <ConversationListItemImage src={avatar} alt={name} width="48" />{' '}
       <ConversationListItemContext>
         {' '}
-        <StyledH3>{name}</StyledH3> <StyledP>Lorem, ipsum dolor.</StyledP>{' '}
+        <StyledH3>{name}</StyledH3> <StyledP>{lastUserMessage}</StyledP>{' '}
       </ConversationListItemContext>{' '}
       <FriendOnlineStatus isOnline={isOnline}>
         {' '}

@@ -12,7 +12,12 @@ import getApiResult from '../../services/apiRandomMessage';
 import { getUserHistory, saveHistory } from '../../services/useLocalStorage';
 
 let timeoutId = null;
-export const Conversation = ({ userId, userName, userAvatar }) => {
+export const Conversation = ({
+  userId,
+  userName,
+  userAvatar,
+  userLastMessage,
+}) => {
   const [messages, setMessages] = useState(() => {
     return getUserHistory(userId);
   });
@@ -121,6 +126,7 @@ export const Conversation = ({ userId, userName, userAvatar }) => {
                 isMine={isMine}
                 message={message}
                 date={date}
+                userLastMessage={userLastMessage}
               />
             );
           })

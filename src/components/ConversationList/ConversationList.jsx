@@ -24,7 +24,7 @@ import { ConversationListItem } from '../ConversationListItem/ConversationListIt
 //   );
 // };
 
-export const ConversationList = ({ users, onDeleteContact, onUserClick }) => {
+export const ConversationList = ({ users, lastUserMessage, onUserClick }) => {
   return (
     <ConversationListWrapper>
       <ConversationListTitle>Chat</ConversationListTitle>
@@ -36,7 +36,8 @@ export const ConversationList = ({ users, onDeleteContact, onUserClick }) => {
             avatar={avatar}
             name={name}
             isOnline={isOnline}
-            onDeleteContact={() => onDeleteContact(id)}
+            lastUserMessage={lastUserMessage}
+            // onDeleteContact={() => onDeleteContact(id)}
             onUserClick={() => onUserClick(id, name, avatar)}
           />
         ))}
