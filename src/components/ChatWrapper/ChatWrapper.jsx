@@ -8,9 +8,9 @@ export const ChatWrapper = () => {
   const [userId, setUserId] = useState('');
   const [userName, setUserName] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
-  const [messages, setMessages] = useState(() => {
-    return getUserHistory(userId);
-  });
+  // const [messages, setMessages] = useState(() => {
+  //   return getUserHistory(userId);
+  // });
 
   const handleUserClick = (id, name, avatar) => {
     setUserId(id);
@@ -26,7 +26,7 @@ export const ChatWrapper = () => {
           userAvatar={userAvatar}
           userName={userName}
           userId={userId}
-          messages={messages}
+          // messages={messages}
         />
       )}
     </>

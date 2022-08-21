@@ -22,6 +22,7 @@ export const saveHistory = (id, message) => {
 
 export const getUserHistory = id => {
   const history = getStorageItem('history')[id] || [];
+  console.log(history);
 };
 /*Users example */
 // const users = [
