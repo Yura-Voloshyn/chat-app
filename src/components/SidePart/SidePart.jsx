@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import Searchbar from '../Searchbar';
 import { ConversationList } from '../ConversationList/ConversationList';
 import { SidePartWrapper } from './SidePart.styled';
@@ -25,16 +25,16 @@ export const SidePart = ({ value, handleUserClick }) => {
     );
   };
 
-  const handleFormSubmit = data => {
-    const alreadyExist = usersConversation.find(el => el.name === data.name);
-    const newUserConversation = { id: nanoid(), name: data.name };
-    alreadyExist
-      ? alert(`${data.name} is already in contacts`)
-      : setUsersConversation(prevUserConv => [
-          newUserConversation,
-          ...prevUserConv,
-        ]);
-  };
+  // const handleFormSubmit = data => {
+  //   const alreadyExist = usersConversation.find(el => el.name === data.name);
+  //   const newUserConversation = { id: nanoid(), name: data.name };
+  //   alreadyExist
+  //     ? alert(`${data.name} is already in contacts`)
+  //     : setUsersConversation(prevUserConv => [
+  //         newUserConversation,
+  //         ...prevUserConv,
+  //       ]);
+  // };
 
   const changeFilter = e => {
     setFilter(e.currentTarget.value);
@@ -46,15 +46,11 @@ export const SidePart = ({ value, handleUserClick }) => {
     );
   };
 
-  // const handleUserClick = id => {
-  //   console.log(id);
-  // };
-
   return (
     <SidePartWrapper>
       <Searchbar
         value={value}
-        onSubmit={handleFormSubmit}
+        // onSubmit={handleFormSubmit}
         onChange={changeFilter}
       />
       <ConversationList

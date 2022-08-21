@@ -25,6 +25,18 @@ export const getUserHistory = id => {
 
   return history;
 };
+
+// export const getUserActivity = () => {
+//     const parsedUsersFromStorage = JSON.parse(localStorage.getItem('users'));
+
+// const getCurrentUser = [...parsedUsersFromStorage].find(
+//   user => user.id === userId
+// );
+// const filtered = [...parsedUsersFromStorage].filter(user => user.id !== userId);
+// filtered.unshift(getCurrentUser);
+
+// window.localStorage.setItem('users', JSON.stringify(filtered));
+// }
 /*Users example */
 // const users = [
 //   {

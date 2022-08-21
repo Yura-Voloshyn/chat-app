@@ -8,17 +8,18 @@ import {
 } from './Conversation.styled';
 import Inputbar from '../Inputbar';
 import ChatMessage from '../ChatMessage/ChatMessage';
-import getApiResult from 'services/apiRandomMessage';
-import { getUserHistory, saveHistory } from 'services/useLocalStorage';
+import getApiResult from '../../services/apiRandomMessage';
+import { getUserHistory, saveHistory } from '../../services/useLocalStorage';
 
 let timeoutId = null;
 export const Conversation = ({ userId, userName, userAvatar }) => {
   const [messages, setMessages] = useState(() => {
     return getUserHistory(userId);
   });
-
   const [lastMessage, setLastMessage] = useState(null);
+  // const [usersActivity, setUsersActivity] = useState([]);
 
+  useEffect(() => {});
   useEffect(() => {
     if (lastMessage !== null) {
       saveHistory(userId, lastMessage);
@@ -42,29 +43,44 @@ export const Conversation = ({ userId, userName, userAvatar }) => {
     }
     timeoutId = setTimeout(() => {
       try {
-        const chackMessage = getApiResult().then(res => {
-          setMessages(
-            prevMessage =>
-              [
-                ...prevMessage,
-                {
-                  message: res.value,
-                  date: new Date().toLocaleString(),
-                  isMine: false,
-                },
-              ] || ''
-          );
+        getApiResult().then(res => {
+          setMessages(prevMessage => [
+            ...prevMessage,
+            {
+              message: res.value,
+              date: new Date().toLocaleString(),
+              isMine: false,
+            },
+          ]);
           setLastMessage({
             message: res.value,
             date: new Date().toLocaleString(),
             isMine: false,
           });
         });
-        console.log(chackMessage);
+        // console.log(chackMessage);
       } catch (error) {
         console.log('error');
       }
     }, 2000);
+  };
+
+  // const [usersActivity, setUsersActivity] = useState([]);
+
+  // useEffect(() => {
+  //   localStorage.setItem('users', JSON.stringify(usersActivity));
+  // }, [usersActivity]);
+
+  const getUserActivity = id => {
+    const parsedUsersFromStorage = JSON.parse(localStorage.getItem('users'));
+
+    const getCurrentUser = [...parsedUsersFromStorage].find(
+      user => user.id === id
+    );
+    const filtered = [...parsedUsersFromStorage].filter(user => user.id !== id);
+    filtered.unshift(getCurrentUser);
+
+    window.localStorage.setItem('users', JSON.stringify(filtered));
   };
 
   const handleSendMessage = message => {
@@ -82,7 +98,7 @@ export const Conversation = ({ userId, userName, userAvatar }) => {
     );
     setLastMessage(myMessageToState);
 
-    // відправити айді юзера ту зе сайт панел
+    getUserActivity(userId);
 
     chackMessageRecive();
   };
