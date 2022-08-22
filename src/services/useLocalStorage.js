@@ -1,5 +1,5 @@
 export const getStorageItem = key => {
-  return localStorage.getItem(key);
+  return JSON.parse(localStorage.getItem(key));
 };
 
 export const initialStorage = () => {
@@ -7,7 +7,7 @@ export const initialStorage = () => {
 };
 export const saveHistory = (id, message) => {
   /* В таску пише шо історія має вже бути то вважаєм шо вона завжди існує в стореджі*/
-  let historyStorage = JSON.parse(getStorageItem('history'));
+  let historyStorage = getStorageItem('history');
 
   /*Update messages array*/
   const userHistory =
@@ -21,7 +21,7 @@ export const saveHistory = (id, message) => {
 };
 
 export const getUserHistory = id => {
-  const history = JSON.parse(getStorageItem('history'))[id.toString()] || [];
+  const history = getStorageItem('history')[id.toString()] || [];
 
   return history;
 };

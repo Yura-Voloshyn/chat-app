@@ -16,15 +16,14 @@ export const Conversation = ({
   userId,
   userName,
   userAvatar,
-  userLastMessage,
+  handleActiveUserConversation,
+  // handleLastUserMessage,
 }) => {
   const [messages, setMessages] = useState(() => {
     return getUserHistory(userId);
   });
   const [lastMessage, setLastMessage] = useState(null);
-  // const [usersActivity, setUsersActivity] = useState([]);
 
-  useEffect(() => {});
   useEffect(() => {
     if (lastMessage !== null) {
       saveHistory(userId, lastMessage);
@@ -42,50 +41,35 @@ export const Conversation = ({
     divRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const chackMessageRecive = () => {
+  const chackMessageRecive = userIdFrom => {
     if (timeoutId) {
       clearTimeout(timeoutId);
     }
     timeoutId = setTimeout(() => {
       try {
         getApiResult().then(res => {
-          setMessages(prevMessage => [
-            ...prevMessage,
-            {
+          if (userIdFrom === userId) {
+            setMessages(prevMessage => [
+              ...prevMessage,
+              {
+                message: res.value,
+                date: new Date().toLocaleString(),
+                isMine: false,
+              },
+            ]);
+          }
+          if (userIdFrom === userId) {
+            setLastMessage({
               message: res.value,
               date: new Date().toLocaleString(),
               isMine: false,
-            },
-          ]);
-          setLastMessage({
-            message: res.value,
-            date: new Date().toLocaleString(),
-            isMine: false,
-          });
+            });
+          }
         });
-        // console.log(chackMessage);
       } catch (error) {
         console.log('error');
       }
-    }, 2000);
-  };
-
-  // const [usersActivity, setUsersActivity] = useState([]);
-
-  // useEffect(() => {
-  //   localStorage.setItem('users', JSON.stringify(usersActivity));
-  // }, [usersActivity]);
-
-  const getUserActivity = id => {
-    const parsedUsersFromStorage = JSON.parse(localStorage.getItem('users'));
-
-    const getCurrentUser = [...parsedUsersFromStorage].find(
-      user => user.id === id
-    );
-    const filtered = [...parsedUsersFromStorage].filter(user => user.id !== id);
-    filtered.unshift(getCurrentUser);
-
-    window.localStorage.setItem('users', JSON.stringify(filtered));
+    }, 10000);
   };
 
   const handleSendMessage = message => {
@@ -102,10 +86,11 @@ export const Conversation = ({
       !prevMessage ? [myMessageToState] : [...prevMessage, myMessageToState]
     );
     setLastMessage(myMessageToState);
+    // console.log(lastMessage);
+    // handleLastUserMessage(userId);
+    handleActiveUserConversation(userId);
 
-    getUserActivity(userId);
-
-    chackMessageRecive();
+    chackMessageRecive(userId);
   };
 
   return (
@@ -126,7 +111,6 @@ export const Conversation = ({
                 isMine={isMine}
                 message={message}
                 date={date}
-                userLastMessage={userLastMessage}
               />
             );
           })

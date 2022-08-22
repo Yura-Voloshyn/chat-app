@@ -3,21 +3,40 @@ import { useState, useEffect } from 'react';
 import Searchbar from '../Searchbar';
 import { ConversationList } from '../ConversationList/ConversationList';
 import { SidePartWrapper } from './SidePart.styled';
+import { getStorageItem } from 'services/useLocalStorage';
 
 import users from '../../jsonData/jsonData.json';
 const usersExample = users;
 
-export const SidePart = ({ value, handleUserClick, lastUserMessage }) => {
+export const SidePart = ({
+  value,
+  handleUserClick,
+  lastUserMessage,
+  activeUserId,
+}) => {
   const [usersConversation, setUsersConversation] = useState(() => {
-    return JSON.parse(window.localStorage.getItem('users')) ?? usersExample;
+    return getStorageItem('users') ?? usersExample;
   });
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
+    if (activeUserId) {
+      const getCurrentUser = [...usersConversation].find(
+        user => user.id === activeUserId
+      );
+      const filtered = [...usersConversation].filter(
+        user => user.id !== activeUserId
+      );
+      filtered.unshift(getCurrentUser);
+      setUsersConversation(filtered);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeUserId]);
+
+  useEffect(() => {
     localStorage.setItem('users', JSON.stringify(usersConversation));
   }, [usersConversation]);
-
-  // юзефект прийме нову айді і мувнути на початок списку
 
   const deleteContact = userId => {
     setUsersConversation(prevState =>

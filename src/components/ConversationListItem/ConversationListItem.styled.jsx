@@ -10,6 +10,7 @@ export const StyledLi = styled.li`
   padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid #cacaca;
+
   &:hover {
     background-color: #dddddd;
   }

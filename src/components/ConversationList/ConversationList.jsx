@@ -31,7 +31,6 @@ export const ConversationList = ({ users, lastUserMessage, onUserClick }) => {
       <ConversationInnerList>
         {users.map(({ id, name, avatar, isOnline }) => (
           <ConversationListItem
-            onClick
             key={id}
             avatar={avatar}
             name={name}
