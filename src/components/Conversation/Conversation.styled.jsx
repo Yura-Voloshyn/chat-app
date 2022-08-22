@@ -27,6 +27,20 @@ export const ConversationChatField = styled.div`
   padding: 10px;
   height: 100%;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 100%;
+  }
+  &::-webkit-scrollbar-track {
+    background: #cacaca;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #777777;
+    border-radius: 5px;
+  }
 `;
 export const ConversationUserAvatar = styled.img`
   display: block;
