@@ -6,36 +6,11 @@ import {
   StyledInput,
 } from './Inputbar.styled';
 
-// import 'react-toastify/dist/ReactToastify.css';
-
-// import { AiOutlineSearch } from 'react-icons/ai';
 import { IoIosSend } from 'react-icons/io';
 import { useState } from 'react';
 
 const Inputbar = ({ onChatSubmit }) => {
   const [message, setMessage] = useState('');
-
-  // const handleKeyDown = e => {
-  //   if (e.key === 'Enter' && !e.shiftKey) {
-  //     e.stopPropagation();
-  //     // e.preventDefault();
-  //     if (message.trim().split('<br>').join('') !== '') {
-  //       onChatSubmit(message);
-  //     }
-  //   }
-  // };
-  // useEffect(() => {
-  //   const handleKeyDown = e => {
-  //     // console.log(e.code);
-  //     if (e.code === 'Enter') {
-  //       // console.log(e.code);
-  //       onChatSubmit(message);
-  //       setMessage('');
-  //     }
-  //   };
-  //   window.addEventListener('keydown', handleKeyDown);
-  //   return () => window.removeEventListener('keydown', handleKeyDown);
-  // }, [message, onChatSubmit]);
 
   const handleInputValue = e => {
     setMessage(e.currentTarget.value);

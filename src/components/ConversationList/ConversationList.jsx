@@ -13,16 +13,6 @@ export const ConversationList = ({
   message,
   activeUserId,
 }) => {
-  // const getUserMsg = id => {
-  //   const lastObj = getLastUserMessage(id);
-  //   if (!lastObj) {
-  //     return;
-  //   }
-  //   const message = lastObj.message.slice(0, 40);
-  //   const userDate = lastObj.lastMsgDate;
-  //   return { message, userDate };
-  // };
-
   return (
     <ConversationListWrapper>
       <ConversationListTitle>Chat</ConversationListTitle>
@@ -43,8 +33,6 @@ export const ConversationList = ({
               isOnline={isOnline}
               message={messageText}
               userDate={messageDate}
-              // lastUserMessage={getUserMsg(id)}
-              // onDeleteContact={() => onDeleteContact(id)}
               onUserClick={() => onUserClick(id, name, avatar)}
             />
           );
