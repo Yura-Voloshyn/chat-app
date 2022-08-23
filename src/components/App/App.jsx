@@ -16,3 +16,7 @@ export const App = () => {
     </StyledContainer>
   );
 };
+const history = getStorageItem('history');
+if (!history) {
+  initialStorage();
+}

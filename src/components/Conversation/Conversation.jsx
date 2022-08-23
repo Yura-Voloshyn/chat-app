@@ -17,7 +17,8 @@ export const Conversation = ({
   userName,
   userAvatar,
   handleActiveUserConversation,
-  // handleLastUserMessage,
+  handleLastMessage,
+  handleLastUserMessage,
 }) => {
   const [messages, setMessages] = useState(() => {
     return getUserHistory(userId);
@@ -27,6 +28,10 @@ export const Conversation = ({
   useEffect(() => {
     if (lastMessage !== null) {
       saveHistory(userId, lastMessage);
+      handleLastMessage({
+        message: lastMessage.message,
+        userDate: lastMessage.lastMsgDate,
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastMessage]);
@@ -40,36 +45,34 @@ export const Conversation = ({
   useEffect(() => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
-
+  const options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  };
   const chackMessageRecive = userIdFrom => {
     if (timeoutId) {
       clearTimeout(timeoutId);
     }
+
     timeoutId = setTimeout(() => {
       try {
         getApiResult().then(res => {
-          if (userIdFrom === userId) {
-            setMessages(prevMessage => [
-              ...prevMessage,
-              {
-                message: res.value,
-                date: new Date().toLocaleString(),
-                isMine: false,
-              },
-            ]);
-          }
-          if (userIdFrom === userId) {
-            setLastMessage({
-              message: res.value,
-              date: new Date().toLocaleString(),
-              isMine: false,
-            });
-          }
+          const myMessageToState = {
+            message: res.value,
+            date: new Date().toLocaleString(),
+            lastMsgDate: new Date().toLocaleDateString('en-US', options),
+            isMine: false,
+          };
+
+          setMessages(prevMessage => [...prevMessage, myMessageToState]);
+
+          setLastMessage(myMessageToState);
         });
       } catch (error) {
         console.log('error');
       }
-    }, 10000);
+    }, 2000);
   };
 
   const handleSendMessage = message => {
@@ -79,6 +82,7 @@ export const Conversation = ({
     const myMessageToState = {
       message,
       date: new Date().toLocaleString(),
+      lastMsgDate: new Date().toLocaleDateString('en-US', options),
       isMine: true,
     };
 
@@ -86,8 +90,7 @@ export const Conversation = ({
       !prevMessage ? [myMessageToState] : [...prevMessage, myMessageToState]
     );
     setLastMessage(myMessageToState);
-    // console.log(lastMessage);
-    // handleLastUserMessage(userId);
+
     handleActiveUserConversation(userId);
 
     chackMessageRecive(userId);

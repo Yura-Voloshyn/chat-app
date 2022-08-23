@@ -1,6 +1,3 @@
-// ConversationListItem,
-//   ConversationListItemImage,
-//   ConversationListItemContext,
 import styled from '@emotion/styled';
 
 export const StyledLi = styled.li`
@@ -41,11 +38,22 @@ export const FriendOnlineStatus = styled.span`
 `;
 
 export const StyledH3 = styled.h3`
-  font-size: 14;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   color: #707070;
 `;
 export const StyledP = styled.p`
-  font-size: 10px;
+  font-size: 12px;
   color: #999999;
+  max-width: 140px;
+`;
+
+export const StyledUserInfoWrapper = styled.div`
+  display: flex;
+  align-items: baseline;
+`;
+export const StyledDate = styled.p`
+  font-size: 12px;
+  color: #707070;
+  margin-left: auto;
 `;

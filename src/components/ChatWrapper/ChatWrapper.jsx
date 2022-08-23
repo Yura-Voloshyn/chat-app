@@ -1,6 +1,6 @@
 import { SidePart } from '../SidePart/SidePart';
 import { Conversation } from '../Conversation/Conversation';
-// import { getUserHistory } from 'services/useLocalStorage';
+
 import { useState } from 'react';
 
 export const ChatWrapper = ({ messages, users }) => {
@@ -8,7 +8,8 @@ export const ChatWrapper = ({ messages, users }) => {
   const [userName, setUserName] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
   const [activeUserId, setActiveUserId] = useState(null);
-  // const [userLastMessage, setUserLastMessage] = useState('');
+  const [message, setMessage] = useState('');
+  const [userDate, setUserDate] = useState('');
 
   const handleUserClick = (id, name, avatar) => {
     setUserId(id);
@@ -21,21 +22,22 @@ export const ChatWrapper = ({ messages, users }) => {
       setActiveUserId(id);
     }
   };
-  // const handleLastUserMessage = id => {
-  //   getUserHistory(id);
-  // };
+  const handleLastMessage = ({ message, userDate }) => {
+    setMessage(message);
+    setUserDate(userDate);
+  };
   return (
     <>
       <SidePart
         users={users}
         activeUserId={activeUserId}
-        // handleLastUserMessage={handleLastUserMessage}
-        // lastUserMessage={userLastMessage}
+        message={message}
+        userDate={userDate}
         handleUserClick={handleUserClick}
       />
       {userId && (
         <Conversation
-          // handleLastUserMessage={handleLastUserMessage}
+          handleLastMessage={handleLastMessage}
           handleActiveUserConversation={handleActiveUserConversation}
           userAvatar={userAvatar}
           userName={userName}

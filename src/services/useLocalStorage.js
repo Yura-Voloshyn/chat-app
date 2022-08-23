@@ -5,14 +5,13 @@ export const getStorageItem = key => {
 export const initialStorage = () => {
   window.localStorage.setItem('history', JSON.stringify({}));
 };
+
+// console.log(initialStorage());
 export const saveHistory = (id, message) => {
-  /* В таску пише шо історія має вже бути то вважаєм шо вона завжди існує в стореджі*/
   let historyStorage = getStorageItem('history');
 
   /*Update messages array*/
-  const userHistory =
-    historyStorage[id] ||
-    []; /* History example by id [{ message:'Hi', date: '', isMine:false },{ message; 'HI', date, isMine:true }, { message, date, isMine }]*/
+  const userHistory = historyStorage[id] || [];
   userHistory.push(message);
 
   /*Update storage history*/
@@ -26,50 +25,18 @@ export const getUserHistory = id => {
   return history;
 };
 
-// export const getUserActivity = () => {
-//     const parsedUsersFromStorage = JSON.parse(localStorage.getItem('users'));
+export const getLastUserMessage = id => {
+  const userMessages = getUserHistory(id);
 
-// const getCurrentUser = [...parsedUsersFromStorage].find(
-//   user => user.id === userId
-// );
-// const filtered = [...parsedUsersFromStorage].filter(user => user.id !== userId);
-// filtered.unshift(getCurrentUser);
+  // const filterIsChack = userMessage.filter(user => !user.isMine);
 
-// window.localStorage.setItem('users', JSON.stringify(filtered));
-// }
-/*Users example */
-// const users = [
-//   {
-//     id: '123-dasd-dasd',
-//     name: 'Calaga',
-//     avatar: '0xadsdwd21',
-//     isOnline: false,
-//   },
-//   {
-//     id: '345435-asdasd-123',
-//     name: 'Bro',
-//     avatar: '0xadsdwd21',
-//     isOnline: false,
-//   },
-// ];
+  const lastItemOfArray =
+    userMessages.length && userMessages[userMessages.length - 1];
+  if (!lastItemOfArray) {
+    return {};
+  }
 
-// /*History example */
-// const history = {
-//   '123-dasd-dasd': [
-//     { message: 'Hi', date: '', isMine: false },
-//     { message: 'Hi de', date: '', isMine: false },
-//   ],
-//   '345435-asdasd-123': [
-//     { message: 'HHHH', date: '', isMine: false },
-//     { message: 'Hi1', date: '', isMine: true },
-//   ],
-// };
-
-// /*Usage example*/
-// const someFunction = () => {
-//   saveHistory('123-dasd-dasd', {
-//     message: 'Hi dno',
-//     date: new Date(),
-//     isMine: true,
-//   });
-// };
+  const message = lastItemOfArray.message.slice(0, 40);
+  const usrDate = lastItemOfArray.lastMsgDate;
+  return { message, usrDate };
+};

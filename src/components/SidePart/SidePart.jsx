@@ -13,6 +13,8 @@ export const SidePart = ({
   handleUserClick,
   lastUserMessage,
   activeUserId,
+  message,
+  userDate,
 }) => {
   const [usersConversation, setUsersConversation] = useState(() => {
     return getStorageItem('users') ?? usersExample;
@@ -44,17 +46,6 @@ export const SidePart = ({
     );
   };
 
-  // const handleFormSubmit = data => {
-  //   const alreadyExist = usersConversation.find(el => el.name === data.name);
-  //   const newUserConversation = { id: nanoid(), name: data.name };
-  //   alreadyExist
-  //     ? alert(`${data.name} is already in contacts`)
-  //     : setUsersConversation(prevUserConv => [
-  //         newUserConversation,
-  //         ...prevUserConv,
-  //       ]);
-  // };
-
   const changeFilter = e => {
     setFilter(e.currentTarget.value);
   };
@@ -73,6 +64,8 @@ export const SidePart = ({
         onChange={changeFilter}
       />
       <ConversationList
+        message={message}
+        userDate={userDate}
         lastUserMessage={lastUserMessage}
         onUserClick={handleUserClick}
         users={getFilteredConversation()}
