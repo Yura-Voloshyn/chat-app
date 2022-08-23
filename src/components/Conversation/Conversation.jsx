@@ -72,7 +72,7 @@ export const Conversation = ({
       } catch (error) {
         console.log('error');
       }
-    }, 2000);
+    }, 10000);
   };
 
   const handleSendMessage = message => {
