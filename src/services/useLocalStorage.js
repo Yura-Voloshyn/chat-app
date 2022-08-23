@@ -1,9 +1,12 @@
+import history from '../jsonData/userHistory.json';
+
+const exampleHistory = history;
 export const getStorageItem = key => {
   return JSON.parse(localStorage.getItem(key));
 };
 
 export const initialStorage = () => {
-  window.localStorage.setItem('history', JSON.stringify({}));
+  window.localStorage.setItem('history', JSON.stringify(exampleHistory));
 };
 
 // console.log(initialStorage());
