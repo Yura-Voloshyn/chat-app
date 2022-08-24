@@ -109,8 +109,10 @@ export const Conversation = ({
           messages.map(({ message, date, isMine }) => {
             return (
               <ChatMessage
-                userId={userId}
                 key={nanoid()}
+                avatar={userAvatar}
+                name={userName}
+                userId={userId}
                 isMine={isMine}
                 message={message}
                 date={date}

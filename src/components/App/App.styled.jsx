@@ -6,4 +6,5 @@ export const StyledContainer = styled.div`
   font-size: 40;
   color: #010101;
   border: 1px solid #cacaca;
+  max-width: 980px;
 `;

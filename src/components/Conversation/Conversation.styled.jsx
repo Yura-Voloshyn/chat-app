@@ -16,7 +16,7 @@ export const ConversationUserName = styled.h2`
   gap: 10px;
 `;
 
-export const ConversationChatField = styled.div`
+export const ConversationChatField = styled.ul`
   display: flex;
   flex-direction: column;
 

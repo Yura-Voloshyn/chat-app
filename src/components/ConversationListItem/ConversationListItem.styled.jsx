@@ -7,6 +7,9 @@ export const StyledLi = styled.li`
   padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid #cacaca;
+  background-color: #ffffff;
+  background-color: ${activeUserBg =>
+    activeUserBg.activeUserBg ? '#cacaca' : '#ffffff'};
 
   &:hover {
     background-color: #dddddd;

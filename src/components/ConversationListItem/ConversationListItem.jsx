@@ -18,10 +18,9 @@ export const ConversationListItem = ({
   onUserClick,
   userDate,
   message,
-  active,
 }) => {
   return (
-    <StyledLi className={active} onClick={() => onUserClick(id, name, avatar)}>
+    <StyledLi onClick={() => onUserClick(id, name, avatar)}>
       {' '}
       <ConversationListItemImage src={avatar} alt={name} width="48" />{' '}
       <ConversationListItemContext>

@@ -21,10 +21,12 @@ export const ConversationList = ({
           const lastMessage = getLastUserMessage(id);
           let messageText = lastMessage?.message;
           let messageDate = lastMessage?.usrDate;
+
           if (activeUserId === id) {
             messageText = message;
             messageDate = userDate;
           }
+
           return (
             <ConversationListItem
               key={id}

@@ -8,6 +8,7 @@ export const ChatWrapper = ({ messages, users }) => {
   const [userName, setUserName] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
   const [activeUserId, setActiveUserId] = useState(null);
+
   const [message, setMessage] = useState('');
   const [userDate, setUserDate] = useState('');
 
